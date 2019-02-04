@@ -1,9 +1,15 @@
 .row{
-    width: 100%;
+    width: 65%;
+	margin-left: 35%;
 }
 .button_style{
     outline: 1px solid black;
     margin-bottom: 4px;
+}
+.button_style_1{
+    outline: 1px solid black;
+    margin-bottom: 4px;
+	margin-left: 35%;
 }
 .gridsquare{
     float: left;
