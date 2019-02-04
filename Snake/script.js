@@ -1,14 +1,17 @@
 var snake = [[10, 10], [10, 11], [10, 12]];
+
 var moveEnum = {
     LEFT: 0,
     TOP: 1,
     RIGHT: 2,
     DOWN: 3
 }
+
 var timerId = null;
 var gameStarted = false;
 var move = moveEnum.LEFT;
 var moved = false;
+
 function genDivs(v) {
     var e = document.body;
     var cellSize = 25;
@@ -32,12 +35,15 @@ function genDivs(v) {
         e.appendChild(row);
     }
 }
+
 function func() {
     alert("You are dead");
 }
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
 function createApple() {
     while (true) {
         var apple = [0, 0];
@@ -45,9 +51,26 @@ function createApple() {
         apple[1] = getRandomInt(0, 20);
         var id = (apple[0] * 20 + apple[1]).toString();
         var appleCell = document.getElementById(id);
-        if (appleCell.style.background != "green") {
+        if (appleCell.style.background != "green" && appleCell.style.background != "black") {
             appleCell.style.background = "red";
             break;
+        }
+    }
+}
+
+function createRocks() {
+	var rocks = 7;
+    while (true) {
+        var trap = [0, 0];
+        trap[0] = getRandomInt(0, 20);
+        trap[1] = getRandomInt(0, 20);
+        var id = (trap[0] * 20 + trap[1]).toString();
+        var trapCell = document.getElementById(id);
+        if (trapCell.style.background != "green" && trapCell.style.background != "red") {
+            trapCell.style.background = "black";
+			rocks--;
+			if (rocks == 0)
+				break;
         }
     }
 }
@@ -66,6 +89,7 @@ function startMoving() {
     }
     gameStarted = true;
     createApple();
+	createRocks();
     timerId = setInterval(function () {
         var x = snake[0][0];
         var y = snake[0][1];
@@ -102,10 +126,10 @@ function startMoving() {
             var tailCell = document.getElementById(((tail[0] * 20) + tail[1]).toString());
             tailCell.style.background = "white";
         }
-        else if (headCell.style.background == "green") {
+        else if (headCell.style.background == "green" || headCell.style.background == "black") {
             dead = true;
         }
-        else {
+        else if (headCell.style.background == "red") {
             createApple();
         }
         headCell.style.background = "green";
