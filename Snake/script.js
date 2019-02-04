@@ -11,6 +11,7 @@ var timerId = null;
 var gameStarted = false;
 var move = moveEnum.LEFT;
 var moved = false;
+var speed = 1;
 
 function genDivs(v) {
     var e = document.body;
@@ -56,6 +57,13 @@ function createApple() {
             break;
         }
     }
+}
+
+function speedUp() {
+	if (speed == 1)
+		speed = 2;
+	else
+		speed = 1;
 }
 
 function createRocks() {
@@ -138,7 +146,7 @@ function startMoving() {
             setTimeout(func, 10);
         }
         moved = false;
-    }, 200);
+    }, 200 / speed);
 }
 function changeDirection(e) {
     if (moved == false) {
