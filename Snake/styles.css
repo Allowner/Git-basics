@@ -1,0 +1,12 @@
+.row{
+    width: 100%;
+}
+.button_style{
+    outline: 1px solid black;
+    margin-bottom: 4px;
+}
+.gridsquare{
+    float: left;
+    outline: 1px solid black;
+    background-color: white;
+}
